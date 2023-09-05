@@ -30,6 +30,8 @@ public class Tree<T> {
 
     public void setRoot(T root) {this.root = root;}
 
+    public List<Tree<T>> getSubTrees() {return List.copyOf(this.subTrees);}
+
     public int getSubTreeNum() {return this.subTrees.size();}
 
     public Tree<T> getSubTree(int subTreeIndex) {return this.subTrees.get(subTreeIndex);}
