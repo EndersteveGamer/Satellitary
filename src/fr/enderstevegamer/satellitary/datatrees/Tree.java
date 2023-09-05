@@ -4,12 +4,14 @@ import org.jetbrains.annotations.Contract;
 import org.jetbrains.annotations.NotNull;
 
 import javax.naming.OperationNotSupportedException;
-import javax.swing.text.html.Option;
-import java.lang.reflect.Array;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+import java.util.Optional;
 import java.util.function.Consumer;
 import java.util.function.Predicate;
 
+@SuppressWarnings("unused")
 public class Tree<T> {
     private T root;
     protected final ArrayList<Tree<T>> subTrees;

@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
+@SuppressWarnings("unused")
 public class BinaryTree<T> extends Tree<T> {
     public BinaryTree(T root, Tree<T> leftTree, Tree<T> rightTree) {
         super(root, new ArrayList<>(List.of(leftTree, rightTree)));

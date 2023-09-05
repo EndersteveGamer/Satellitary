@@ -68,5 +68,6 @@ public class Testing {
                         new Tree<>(12)
                                 .addSubTree(13)
                 );
+        System.out.println(otherTree.findSmallestCommonTree(List.of(14, 4)));
     }
 }
