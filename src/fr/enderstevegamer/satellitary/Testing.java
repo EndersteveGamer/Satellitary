@@ -4,6 +4,7 @@ import fr.enderstevegamer.satellitary.datatrees.Tree;
 import org.jetbrains.annotations.Contract;
 
 import javax.naming.OperationNotSupportedException;
+import java.util.List;
 
 public class Testing {
     @Contract(pure = true)
@@ -36,9 +37,36 @@ public class Testing {
                                                 .addSubTree(14)
                                 )
                 );
-        Tree.TreeIndex index = new Tree.TreeIndex(1, 2, 2);
-        System.out.println(tree.getElement(index));
-        System.out.println(index);
-        System.out.println(tree.getAllElements());
+        Tree<Integer> otherTree = new Tree<>(0)
+                .addSubTree(
+                        new Tree<>(
+                                1
+                        )
+                                .addSubTree(
+                                        new Tree<>(2)
+                                )
+                                .addSubTree(
+                                        new Tree<>(3)
+                                                .addSubTree(5)
+                                                .addSubTree(
+                                                        new Tree<>(6)
+                                                                .addSubTree(
+                                                                        new Tree<>(14)
+                                                                )
+                                                )
+                                )
+                                .addSubTree(4)
+                )
+                .addSubTree(
+                        new Tree<>(7)
+                                .addSubTree(8)
+                                .addSubTree(9)
+                                .addSubTree(10)
+                                .addSubTree(11)
+                )
+                .addSubTree(
+                        new Tree<>(12)
+                                .addSubTree(13)
+                );
     }
 }

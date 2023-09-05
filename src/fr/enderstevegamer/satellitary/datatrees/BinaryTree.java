@@ -17,7 +17,11 @@ public class BinaryTree<T> extends Tree<T> {
         return this.hasSubTrees() ? Optional.of(this.subTrees.get(0)) : Optional.empty();
     }
 
+    public void setLeft(Tree<T> subTree) {this.subTrees.set(0, subTree);}
+
     public Optional<Tree<T>> getRight() {
         return this.hasSubTrees() ? Optional.of(this.subTrees.get(1)) : Optional.empty();
     }
+
+    public void setRight(Tree<T> subTree) {this.subTrees.set(1, subTree);}
 }
