@@ -6,11 +6,12 @@ import org.jetbrains.annotations.NotNull;
 import javax.naming.OperationNotSupportedException;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 import java.util.function.Consumer;
 
 public class Tree<T> {
     private T root;
-    private final ArrayList<Tree<T>> subTrees;
+    protected final ArrayList<Tree<T>> subTrees;
 
     @Contract(pure = true)
     public Tree(T root, ArrayList<Tree<T>> subTrees) {
@@ -26,11 +27,15 @@ public class Tree<T> {
 
     public void setRoot(T root) {this.root = root;}
 
-    public ArrayList<Tree<T>> getSubTrees() {return this.subTrees;}
+    public int getSubTreeNum() {return this.subTrees.size();}
+
+    public Tree<T> getSubTree(int subTreeIndex) {return this.subTrees.get(subTreeIndex);}
 
     public Tree<T> addSubTree(Tree<T> subTree) {this.subTrees.add(subTree); return this;}
 
     public Tree<T> addSubTree(T object) {this.addSubTree(new Tree<>(object)); return this;}
+
+    public Tree<T> removeSubTree(int subTreeIndex) {return this.subTrees.remove(subTreeIndex);}
 
     public boolean hasSubTrees() {return !this.subTrees.isEmpty();}
 
@@ -52,6 +57,33 @@ public class Tree<T> {
                         + "Current index: " + index
         );
         return this.subTrees.get(nextTree).getElement(nextIndex);
+    }
+
+    public Tree<T> getSubTree(@NotNull TreeIndex index) {
+        if (index.isEmpty()) return this;
+        return this.subTrees.get(index.getFirstIndex()).getSubTree(index.subIndex());
+    }
+
+    public Tree<T> removeSubTree(@NotNull TreeIndex index) throws OperationNotSupportedException {
+        if (index.isEmpty()) throw new UnsupportedOperationException("This tree can't remove itself!");
+        if (index.isUnique()) {
+            return this.subTrees.remove((int) index.getUnique());
+        }
+        return this.subTrees.get(index.getFirstIndex()).removeSubTree(index.subIndex());
+    }
+
+    public ArrayList<T> getLeaves() {
+        if (!this.hasSubTrees()) return new ArrayList<>(List.of(this.getRoot()));
+        ArrayList<T> list = new ArrayList<>();
+        for (Tree<T> tree : this.subTrees) list.addAll(tree.getLeaves());
+        return list;
+    }
+
+    public ArrayList<T> getAllElements() {
+        ArrayList<T> list = new ArrayList<>(List.of(this.getRoot()));
+        if (!this.hasSubTrees()) return list;
+        for (Tree<T> tree : this.subTrees) list.addAll(tree.getAllElements());
+        return list;
     }
 
     public void forEach(Consumer<Tree<T>> consumer) {

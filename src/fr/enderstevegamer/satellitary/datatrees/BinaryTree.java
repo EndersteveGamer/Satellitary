@@ -14,10 +14,10 @@ public class BinaryTree<T> extends Tree<T> {
     }
 
     public Optional<Tree<T>> getLeft() {
-        return this.hasSubTrees() ? Optional.of(this.getSubTrees().get(0)) : Optional.empty();
+        return this.hasSubTrees() ? Optional.of(this.subTrees.get(0)) : Optional.empty();
     }
 
     public Optional<Tree<T>> getRight() {
-        return this.hasSubTrees() ? Optional.of(this.getSubTrees().get(1)) : Optional.empty();
+        return this.hasSubTrees() ? Optional.of(this.subTrees.get(1)) : Optional.empty();
     }
 }

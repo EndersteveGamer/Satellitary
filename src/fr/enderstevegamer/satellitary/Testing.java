@@ -39,5 +39,6 @@ public class Testing {
         Tree.TreeIndex index = new Tree.TreeIndex(1, 2, 2);
         System.out.println(tree.getElement(index));
         System.out.println(index);
+        System.out.println(tree.getAllElements());
     }
 }
