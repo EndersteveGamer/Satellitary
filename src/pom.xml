@@ -4,7 +4,7 @@
 
     <groupId>com.github.EndersteveGamer</groupId>
     <artifactId>Satellitary</artifactId>
-    <version>[0.1,)</version>
+    <version>LATEST</version>
     <packaging>jar</packaging>
 
     <name>Satellitary</name>
