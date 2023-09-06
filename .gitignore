@@ -2,9 +2,7 @@
 out/
 !**/src/main/**/out/
 !**/src/test/**/out/
-
 src/fr/enderstevegamer/satellitary/Testing.java
-pom.xml
 
 ### Eclipse ###
 .apt_generated
@@ -30,3 +28,4 @@ bin/
 
 ### Mac OS ###
 .DS_Store
+src/fr/enderstevegamer/satellitary/Testing.java
