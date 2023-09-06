@@ -4,6 +4,8 @@ import org.jetbrains.annotations.Contract;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 
 /**
  * <p>
@@ -25,6 +27,20 @@ public class Stack<T> {
      */
     @Contract(pure = true)
     public Stack() {this.objects = new ArrayList<>();}
+
+    /**
+     * <p>
+     *     A constructor creating a {@link Stack} from a {@link List}
+     * </p>
+     * <p>
+     *     The first element of the list will be on top of the {@link Stack}
+     * </p>
+     * @param list The {@link List} to create the {@link Stack} from
+     */
+    public Stack(@NotNull List<T> list) {
+        this.objects = new ArrayList<>();
+        for (int i = list.size() - 1; i >= 0; i--) this.objects.add(list.get(i));
+    }
 
     /**
      * A contructor cloning the given {@link Stack}
@@ -51,4 +67,8 @@ public class Stack<T> {
         if (objects.isEmpty()) throw new IllegalStateException("Can't unstack from en empty stack!");
         return objects.remove(objects.size() - 1);
     }
+
+    public boolean isEmpty() {return this.objects.isEmpty();}
+
+    public int stackSize() {return this.objects.size();}
 }

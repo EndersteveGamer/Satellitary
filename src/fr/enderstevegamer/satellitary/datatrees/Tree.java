@@ -169,6 +169,19 @@ public class Tree<T> {
         return list;
     }
 
+    public ArrayList<TreeElementSearchResult<T>> getParentElements(@NotNull TreeIndex index) {
+        if (index.isEmpty()) return new ArrayList<>();
+        return this.getRootAndParentElements(index.parentIndex());
+    }
+
+    private @NotNull ArrayList<TreeElementSearchResult<T>> getRootAndParentElements(@NotNull TreeIndex index) {
+        ArrayList<TreeElementSearchResult<T>> list = new ArrayList<>(
+                List.of(new TreeElementSearchResult<>(this.getSubTree(index).getRoot(), index))
+        );
+        if (!index.isEmpty()) list.addAll(this.getRootAndParentElements(index.parentIndex()));
+        return list;
+    }
+
     public record TreeElementSearchResult<T>(T object, TreeIndex foundIndex) {
         @Contract(pure = true)
         public T getObject() {return this.object;}
