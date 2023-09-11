@@ -285,6 +285,8 @@ public class Tree<T> {
             return parentIndex;
         }
 
+        public int getDepth() {return this.indexes.size();}
+
         @Override
         public String toString() {
             if (this.isEmpty()) return "0";
