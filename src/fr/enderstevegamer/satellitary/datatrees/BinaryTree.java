@@ -1,4 +1,4 @@
-package fr.enderstevegamer.satellitary.datastructures.datatrees;
+package fr.enderstevegamer.satellitary.datatrees;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -21,7 +21,7 @@ public class BinaryTree<T> extends Tree<T> {
     public void setLeft(Tree<T> subTree) {this.subTrees.set(0, subTree);}
 
     public Optional<Tree<T>> getRight() {
-        return this.subTrees.size() > 1 ? Optional.of(this.subTrees.get(1)) : Optional.empty();
+        return this.hasSubTrees() ? Optional.of(this.subTrees.get(1)) : Optional.empty();
     }
 
     public void setRight(Tree<T> subTree) {this.subTrees.set(1, subTree);}
