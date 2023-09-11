@@ -1,4 +1,4 @@
-package fr.enderstevegamer.satellitary.datatrees;
+package fr.enderstevegamer.satellitary.datastructures.datatrees;
 
 import org.jetbrains.annotations.Contract;
 import org.jetbrains.annotations.NotNull;
@@ -180,6 +180,28 @@ public class Tree<T> {
         );
         if (!index.isEmpty()) list.addAll(this.getRootAndParentElements(index.parentIndex()));
         return list;
+    }
+
+    @Override
+    public String toString() {
+        StringBuilder str = new StringBuilder(this.getRoot() + ": [");
+        for (int i = 0; i < this.subTrees.size(); i++) {
+            str.append(this.subTrees.get(i).toString());
+            if (i < this.subTrees.size() - 1) str.append(", ");
+        }
+        return str.append("]").toString();
+    }
+
+    @Contract(value = "null -> false", pure = true)
+    @Override
+    public boolean equals(Object obj) {
+        if (!(obj instanceof Tree<?> tree)) return false;
+        if (!this.getRoot().equals(tree.getRoot())) return false;
+        if (this.subTrees.size() != tree.subTrees.size()) return false;
+        for (int i = 0; i < this.subTrees.size(); i++) {
+            if (!this.subTrees.get(i).equals(tree.subTrees.get(i))) return false;
+        }
+        return true;
     }
 
     public record TreeElementSearchResult<T>(T object, TreeIndex foundIndex) {
