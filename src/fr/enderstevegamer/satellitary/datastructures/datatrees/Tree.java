@@ -71,9 +71,7 @@ public class Tree<T> {
 
     public Tree<T> removeSubTree(@NotNull TreeIndex index) throws OperationNotSupportedException {
         if (index.isEmpty()) throw new UnsupportedOperationException("This tree can't remove itself!");
-        if (index.isUnique()) {
-            return this.subTrees.remove(index.getUnique() - 1);
-        }
+        if (index.isUnique()) return this.subTrees.remove(index.getUnique() - 1);
         return this.subTrees.get(index.getFirstIndex() - 1).removeSubTree(index.subIndex());
     }
 
